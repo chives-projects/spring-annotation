@@ -9,14 +9,6 @@ spring:
         prefer-ip-address: true
         register: true
         acl-token: aab6606d-fbea-8c92-bd08-c73de99e58af
-mystr:
-  enabled: true
-  k1: v1,v2,v3
-my:
-  map:
-    enabled: true
-    k1: v1,v2,v3
-
 #    gateway:
 #      routes:
 #        - id: test_route
