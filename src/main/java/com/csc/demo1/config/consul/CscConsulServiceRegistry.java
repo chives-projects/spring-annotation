@@ -12,7 +12,6 @@ import org.springframework.cloud.consul.serviceregistry.ConsulServiceRegistry;
 import org.springframework.core.env.Environment;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * @description: Consul自定义配置
@@ -21,35 +20,35 @@ import java.util.UUID;
  * @version: 1.0
  */
 
-public class MyConsulServiceRegistry extends ConsulServiceRegistry {
+public class CscConsulServiceRegistry extends ConsulServiceRegistry {
     @Autowired
     private Environment env;
-//    @Value("${spring.csc.token.system-number}")
-    private String serviceNo="demo";
+    @Value("${spring.application.name}")
+    private String serviceNo;
+    @Value("${csc.name}")
+    private String name;
 
-    public MyConsulServiceRegistry(ConsulClient client, ConsulDiscoveryProperties properties, TtlScheduler ttlScheduler, HeartbeatProperties heartbeatProperties) {
+    public CscConsulServiceRegistry(ConsulClient client, ConsulDiscoveryProperties properties, TtlScheduler ttlScheduler, HeartbeatProperties heartbeatProperties) {
         super(client, properties, ttlScheduler, heartbeatProperties);
     }
 
     @Override
     public void register(ConsulRegistration reg) {
-
         // 重新设计id，此处用的是名字也可以用其他方式例如instanceid、host、uri等
-        reg.getService().setId(UUID.randomUUID().toString());
-        String localIp = "localhost";
-//        String localIp = env.getProperty("JAVA_LOCALIP", "localhost");
-//        int applicationPort = Integer.valueOf(env.getProperty("JAVA_APPLICATIONPORT"));
-        int applicationPort = 8500;
+//        reg.getService().setId(UUID.randomUUID().toString());
+        System.out.println(name);
+        String localIp = env.getProperty("JAVA_LOCALIP", "localhost");
+        int applicationPort = Integer.valueOf(env.getProperty("JAVA_APPLICATIONPORT","8008"));
         reg.getService().setAddress(localIp);
         reg.getService().setPort(applicationPort);
         reg.getService().setName(serviceNo);
         reg.getService().setTags(new ArrayList<String>() {{
             this.add("cscDataTag_demo");
         }});
-        //使用代码注册后，yml配置中的注册信息则会失效，需要自己添加健康检查等配置
 
+        //使用代码注册后，yml配置中的注册信息则会失效，需要自己添加健康检查等配置
         NewService.Check check = new NewService.Check();
-        check.setHttp("http://" + localIp + ":" + applicationPort + "/health");
+        check.setHttp("http://" + localIp + ":" + applicationPort + "/actuator/health");
         check.setInterval("10s");
         check.setTimeout("1s");
         check.setMethod("GET");

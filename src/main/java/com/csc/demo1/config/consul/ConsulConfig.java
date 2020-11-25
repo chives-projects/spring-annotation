@@ -20,11 +20,11 @@ public class ConsulConfig {
     private TtlScheduler ttlScheduler;
 
 //    @Bean
-    public MyConsulServiceRegistry consulServiceRegistry(
+    public CscConsulServiceRegistry consulServiceRegistry(
             ConsulClient consulClient,
             ConsulDiscoveryProperties properties,
             HeartbeatProperties heartbeatProperties) {
-        return new MyConsulServiceRegistry(
+        return new CscConsulServiceRegistry(
                 consulClient, properties, ttlScheduler, heartbeatProperties);
     }
 }
