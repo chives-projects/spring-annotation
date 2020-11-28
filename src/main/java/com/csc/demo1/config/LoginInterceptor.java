@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Create: 2020-07-09 16:29
  * @Version: 1.0
  */
-//@Component
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
     /**
      * @Description: 预处理回调方法，实现处理器的预处理

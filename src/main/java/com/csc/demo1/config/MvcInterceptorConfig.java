@@ -1,6 +1,7 @@
 package com.csc.demo1.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @Create: 2020-07-09 16:33
  * @Version: 1.0
  */
-//@Configuration
+@Configuration
 public class MvcInterceptorConfig extends WebMvcConfigurationSupport {
 
     @Autowired
