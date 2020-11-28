@@ -1,8 +1,6 @@
 package com.csc.demo1.controller;
 
 import com.csc.demo1.po.User;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +13,6 @@ import java.util.concurrent.TimeUnit;
  * @Create: 2020-08-04 16:09
  * @Version: 1.0
  */
-@Api(tags = "error")
 @RestController
 @RequestMapping("gateway")
 public class DemoController {
@@ -27,7 +24,7 @@ public class DemoController {
 
     @GetMapping(value = "get/{id}")
     public String getPath(@PathVariable String id) {
-        return "spring cloud gateway get " + id;
+        return "spring cloud gateway get PathVariable " + id;
     }
 
     @GetMapping(value = "get")
@@ -37,7 +34,7 @@ public class DemoController {
 
     @GetMapping(value = "getUser")
     public User getUser(@Validated @RequestBody User user) {
-        user.setId("new");
+        user.setId("getUser");
         return user;
     }
 
@@ -46,16 +43,15 @@ public class DemoController {
         return "spring cloud gateway post " + id;
     }
 
-    @ApiOperation("get")
     @PostMapping(value = "postUser")
     public User postUser(@Validated @RequestBody User user) {
-        user.setId("new");
+        user.setId("postUser");
         return user;
     }
 
     @GetMapping(value = "error")
     public String error() {
-        throw new NullPointerException("dd");
+        throw new NullPointerException("error");
     }
 
     @GetMapping(value = "timeout/{time}")

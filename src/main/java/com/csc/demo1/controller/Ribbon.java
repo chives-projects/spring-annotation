@@ -16,15 +16,13 @@ public class Ribbon {
 
     @GetMapping(value = "get")
     public String get() {
-        System.out.println("9520");
-        return "springcloud gateway get";
+        return "spring cloud gateway get";
     }
 
     @PostMapping(value = "post/{id}")
     public String post1(@PathVariable("id") String id) {
-        return "springcloud gateway post " + id;
+        return "spring cloud gateway post " + id;
     }
-
 
 
 }

@@ -1,8 +1,5 @@
 package com.csc.demo1.po;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -17,20 +14,16 @@ import java.util.List;
  * @Create: 2020-09-25 17:20
  * @Version: 1.0
  */
-@ApiModel("user")
 public class User {
-    @ApiModelProperty(value = "id",example = "123")
     @NotEmpty
     private String id;
 
     @Valid
     List<Item> items;
-    @ApiModelProperty(example = "5")
     @Min(value = 2,message = "小于2")
     private int age;
     @Max(11)
     private int high;
-    @ApiModelProperty(value = "enail",example = "123@qq.com")
     @Email(message = "email")
     private String email;
 
