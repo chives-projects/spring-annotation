@@ -12,10 +12,10 @@ public class Demo1ApplicationTests {
     @Autowired
     DemoController demoController;
 
-    @Test
-    public void contextLoads() {
-        System.out.println(demoController.get("1"));
-        System.out.println("hello");
-    }
+//    @Test
+//    public void contextLoads() {
+//        System.out.println(demoController.get("1"));
+//        System.out.println("hello");
+//    }
 
 }

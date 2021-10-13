@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.csc.demo1.redis.RedisDataSourceAutoConfiguration
+org.springframework.context.ApplicationContextInitializer=com.csc.demo1.ioc.initializer.IOCApplicationContextInitializer
