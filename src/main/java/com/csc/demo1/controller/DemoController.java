@@ -1,11 +1,7 @@
 package com.csc.demo1.controller;
 
 import com.csc.demo1.po.User;
-import com.csc.demo1.redis.factory.RedisDbFactory;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,21 +18,13 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("gateway")
 public class DemoController {
-    //todo:自定义注解实现
-    @Resource(name = "acdataStringRedisTemplate")
-//    @Autowired
-    StringRedisTemplate stringRedisTemplate;
 
     //    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @GetMapping(value = "get/getget")
     public String get() {
-//        stringRedisTemplate = RedisDbFactory.getStringRedisTemplate("acdata");
-        stringRedisTemplate.opsForValue().set("s0k", "s0v", 10, TimeUnit.MINUTES);
         LoggerFactory.getLogger(this.getClass()).info("---------info");
         return "spring cloud gateway get";
     }
-
-
 
 
     @GetMapping(value = "get/{id}")
